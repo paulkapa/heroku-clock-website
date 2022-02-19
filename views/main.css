@@ -1,0 +1,89 @@
+body {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.heade-r {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 255, 0.3);
+    background-size: contain;
+}
+
+.h1-div {
+    position: fixed;
+    top: 5%;
+    left: 1em;
+    background-color: rgba(0, 0, 255, 0.3);
+    background-size: contain;
+    z-index: 100;
+}
+
+.h1-div:hover {
+    cursor: pointer;
+}
+
+.fx-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.lightning {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(33, 37, 41, 0.9);
+    opacity: 0.9;
+    z-index: 99;
+}
+
+.lightning > video {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.play-btn {
+    position: fixed;
+    top: 30%;
+    left: calc(50% - 10em/2);
+}
+
+.clock-div {
+    position: fixed;
+    top: calc(50% - 8vmax/2);
+    left: 1em;
+    border: 0, transparent;
+    border-radius: 0.7em;
+    background-color: rgba(0, 0, 255, 0.3);
+    background-size: contain;
+    font-size: 8vmax;
+    z-index: 101;
+}
+
+.copy-r {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 255, 0.3);
+    background-size: contain;
+    z-index: 90;
+}
+
+.hide-footer, .show-footer, .replay-video, .loop-video, .mute-video, .unmute-video, .playback-speed {
+    position: fixed;
+    bottom: 1.5em;
+    z-index: 100;
+}
+
+.hide-footer, .show-footer {left: 0.5em;}
+
+.replay-video {left: 5em;}
+
+.loop-video {left: 9em;}
+
+.mute-video, .unmute-video {left: 13em;}
+
+.playback-speed {left: 17.5em;}
