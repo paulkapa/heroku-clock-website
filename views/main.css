@@ -31,17 +31,12 @@ body {
     width: 100%;
 }
 
-.lightning {
-    position: absolute;
-    width: 100%;
-    background-color: rgba(33, 37, 41, 0.9);
-    opacity: 0.9;
-    z-index: 99;
-}
-
 .lightning > video {
-    position: relative;
-    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-width: 100vw;
+    max-height: 100vh;
     z-index: 1;
 }
 
@@ -60,7 +55,7 @@ body {
     background-color: rgba(0, 0, 255, 0.3);
     background-size: contain;
     font-size: 8vmax;
-    z-index: 101;
+    z-index: 90;
 }
 
 .copy-r {
@@ -87,3 +82,16 @@ body {
 .mute-video, .unmute-video {left: 13em;}
 
 .playback-speed {left: 17.5em;}
+
+@media only screen and (min-width: 1280px) {
+    .lightning > video {
+        min-width: 100vw;
+        min-height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .lightning > video {
+        top: 10em;
+    }
+}
