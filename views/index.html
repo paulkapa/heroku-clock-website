@@ -5,242 +5,81 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Font Awesome SVG Icons Kit owned by Paul Capatina-Voila (@paulkapa) -->
+        <script src="https://kit.fontawesome.com/3b3b81e1a6.js" crossorigin="anonymous"></script>
+        <!-- Local script -->
+        <script src="./main.js"></script>
+
+        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Local CSS -->
         <link rel="stylesheet" href="./main.css">
-        <script src="https://kit.fontawesome.com/3b3b81e1a6.js" crossorigin="anonymous"></script>
 
         <title>Clock Website - Heroku</title>
     </head>
 
-    <body class="bg-dark text-light m-0 p-0 user-select-none">
+    <body class="modal-body">
 
         <!-- Site Description -->
-        <section class="heade-r modal-content m-0 p-0">
+        <section id="header-s" class="header-s modal-header">
             <header>
-                <em>Clock Website - Heroku | Press play and enjoy your useful time-keeping site</em>
+                <!-- Description -->
+                <strong>
+                    Clock Website <code>-</code> Heroku
+                    &MediumSpace;<code>|</code>&MediumSpace;
+                    Press play and enjoy your useful time<code>-</code>keeping site
+                </strong>
+                <!-- Information about how long you displayed the time -->
+                <p id="wasted" class="wasted alert-info"></p>
             </header>
         </section>
 
         <!-- Site Content -->
-        <section class="modal-content bg-dark text-light m-0 p-0">
+        <section id="body-s" class="body-s modal-content">
 
-            <!-- -- "There will be time!" text -- -->
-            <div class="h1-div d-none m-0">
+            <!-- "There will be time!" text -->
+            <div id="h1-div" class="h1-div d-none">
                 <h1 class="h2">
                     <code>let</code> there <code>=`</code>be <code>${</code>time<code>}</code>!<code>`</code>
                 </h1>
             </div>
 
-            <!-- -- FX -- -->
-            <div class="fx-div m-0">
-
-                <!-- Lightning Fx -->
-                <span class="lightning d-none">
-                    <video id="lightning-fx" muted>
-                        <source src="./angry-cloud-fx.mp4" type="video/mp4">
-                        Video not supported!
-                    </video>
-                </span>
-
-                <!-- Play Button -->
-                <span class="play-btn">
-                    <em class="fa-regular fa-circle-play fa-beat fa-10x"></em>
-                </span>
+            <!-- Video Lightning Animation -->
+            <div id="lightning" class="lightning d-none">
+                <!-- Video -->
+                <video id="lightning-fx" class="lightning-fx" muted poster="./bg-zeus.jpg">
+                    <source src="./angry-cloud-fx.mp4" type="video/mp4">
+                    <source src="./angry-cloud-fx.gif" type="video/gif">
+                    <track label="English" kind="captions" srclang="en" src="./angry-cloud-fx.srt" default>
+                    <strong>Video not supported by your browser!</strong>
+                </video>
+                <!-- Video Controls -->
+                <span id="ppr-video" class="ppr-video text-info"><em class="fa-solid fa-hand fa-3x"></em></span>
+                <span id="loop-video" class="loop-video text-success"><em class="fa-solid fa-poo-storm fa-3x"></em></span>
+                <span id="mute-video" class="mute-video d-none text-info"><em class="fa-solid fa-volume-high fa-3x"></em></span>
+                <span id="unmute-video" class="unmute-video text-info"><em class="fa-solid fa-volume-xmark fa-3x"></em></span>
+                <span id="playback-rate" class="playback-rate text-success"><em class="fa-solid fa-dice-d20 fa-3x"></em></span>
             </div>
 
-            <!-- -- Clock display -- -->
-            <div class="clock-div d-none m-0 p-3">
+            <!-- Play Button -->
+            <span id="play-btn" class="play-btn"><em class="fa-regular fa-circle-play fa-beat fa-10x"></em></span>
+
+            <!-- Clock display -->
+            <div id="clock-div" class="clock-div d-none">
                 <p id="out">00:00:00</p>
             </div>
         </section>
 
         <!-- Footer content -->
-        <section class="copy-r modal-footer">
-            <footer><span class="hide-footer text-primary"><em class="fa-solid fa-circle-arrow-down fa-3x"></em></span>MIT Licence - Paul Capatina-Voila &copy; 2022 - KEA</footer>
+        <section id="footer-s" class="footer-s modal-footer">
+            <footer>MIT Licence - Paul Capatina-Voila &copy; 2022 - KEA</footer>
         </section>
+        <!-- Footer Controls -->
+        <span id="show-footer" class="show-footer d-none text-primary"><em class="fa-solid fa-circle-up fa-3x"></em></span>
+        <span id="hide-footer" class="hide-footer text-primary"><em class="fa-solid fa-circle-arrow-down fa-3x"></em></span>
 
-        <!-- Footer Control -->
-        <span class="show-footer d-none text-primary"><em class="fa-solid fa-circle-up fa-3x"></em></span>
-
-        <!-- Video Controls -->
-        <span class="replay-video text-secondary"><em class="fa-solid fa-play fa-3x"></em></span>
-        <span class="loop-video text-warning"><em class="fa-solid fa-poo-storm fa-3x"></em></span>
-        <span class="mute-video d-none text-info"><em class="fa-solid fa-volume-high fa-3x"></em></span>
-        <span class="unmute-video text-info"><em class="fa-solid fa-volume-xmark fa-3x"></em></span>
-        <span class="playback-speed text-success"><em class="fa-solid fa-dice-d20 fa-3x"></em></span>
-
-        <!-- Embedded Script -->
-        <script>
-
-            // Page Information
-            const head_r = document.getElementsByClassName("heade-r").item(0);
-
-            // "There will be time!" text
-            const h1_div = document.getElementsByClassName("h1-div").item(0);
-
-            // Lightning Fx
-            const lightning_fx_div = document.getElementsByClassName("lightning").item(0);
-
-            // Play Button
-            const play_btn = document.getElementsByClassName("play-btn").item(0);
-
-            // Clock display
-            const clock_div = document.getElementsByClassName("clock-div").item(0);
-
-            // Time text
-            const clock_out = document.getElementById("out");
-
-            // Footer
-            const copy_r = document.getElementsByClassName("copy-r").item(0);
-
-            // Hide footer button
-            const hide_footer = document.getElementsByClassName("hide-footer").item(0);
-
-            // Show footer button
-            const show_footer = document.getElementsByClassName("show-footer").item(0);
-
-            // Video
-            const video = document.getElementById("lightning-fx");
-
-            // Replay video button
-            const replay_video = document.getElementsByClassName("replay-video").item(0);
-
-            // Loop video button
-            const loop_video = document.getElementsByClassName("loop-video").item(0);
-
-            // Mute video button
-            const mute_video = document.getElementsByClassName("mute-video").item(0);
-
-            // Unmute video button
-            const unmute_video = document.getElementsByClassName("unmute-video").item(0);
-
-            // Video playback speed
-            const playback_speed = document.getElementsByClassName("playback-speed").item(0);
-
-            // Fetch handler
-            let handler = 0;
-
-            // Utilities
-            let lastUNIXtime = 0;
-            let counter = -1;
-
-            // Convert UNIX time to readable time
-            function convertTime(unixtime) {
-                lastUNIXtime = Number(unixtime);
-                return Date(unixtime).toString().slice(16, 24);
-            }
-
-            // Fetch the time from the World Time Api
-            function fetchTime() {
-                if (counter == -1 || counter % 10 == 0) {
-                    fetch(`https://worldtimeapi.org/api/timezone/Europe/Copenhagen`)
-                        .then(res => res.json())
-                        .then(res => clock_out.innerHTML = convertTime(res.unixtime));
-                    counter++;
-                    console.log(`Fetch time ${counter}`);
-                } else {
-                    lastUNIXtime += 1000;
-                    clock_out.innerHTML = convertTime(lastUNIXtime);
-                    counter++;
-                }
-            }
-
-            // Start the animations
-            play_btn.addEventListener("click", () => {
-                // hide header
-                head_r.classList.toggle("d-none");
-                // hide play button
-                play_btn.classList.toggle("d-none");
-                // show time related text
-                h1_div.classList.toggle("d-none");
-                // show lightning fx
-                lightning_fx_div.classList.toggle("d-none");
-                // show time display
-                clock_div.classList.toggle("d-none");
-                // keep updating time every second
-                fetchHandler = setInterval(() => fetchTime(), 1000);
-                // play video
-                video.play();
-            });
-
-            // Reset page
-            h1_div.addEventListener("click", () => {
-                clearInterval(fetchHandler);
-                play_btn.click();
-                setTimeout(() => clearInterval(fetchHandler), 1050);
-                counter = -1;
-            });
-
-            // Toggle footer
-            function toggleFooter() {
-                copy_r.classList.toggle("d-none");
-                show_footer.classList.toggle("d-none");
-            }
-
-            // Hide footer button click handler
-            hide_footer.addEventListener("click", () => {
-                toggleFooter();
-            });
-
-            // Show footer button click handler
-            show_footer.addEventListener("click", () => {
-                toggleFooter();
-            });
-
-            // Replay video
-            replay_video.addEventListener("click", () => {
-                if (!lightning_fx_div.classList.contains("d-none")) {
-                    if (video.ended)
-                        video.play();
-                }
-            });
-            // Loop video
-            loop_video.addEventListener("click", () => {
-                if (!lightning_fx_div.classList.contains("d-none")) {
-                    if (!video.hasAttribute("loop")) {
-                        video.setAttribute("loop", true);
-                        video.play();
-                    } else {
-                        video.removeAttribute("loop");
-                    }
-                    loop_video.classList.toggle("text-warning");
-                    loop_video.classList.toggle("text-danger");
-                }
-            });
-
-            // Mute video
-            mute_video.addEventListener("click", () => {
-                if (!lightning_fx_div.classList.contains("d-none")) {
-                    if (!video.muted) {
-                        video.muted = true;
-                        mute_video.classList.toggle("d-none");
-                        unmute_video.classList.toggle("d-none");
-                    }
-                }
-            });
-            // Unmute video
-            unmute_video.addEventListener("click", () => {
-                if (!lightning_fx_div.classList.contains("d-none")) {
-                    if (video.muted) {
-                        video.muted = false;
-                        mute_video.classList.toggle("d-none");
-                        unmute_video.classList.toggle("d-none");
-                    }
-                }
-            });
-            // Change video playback speed
-            playback_speed.addEventListener("click", () => {
-                if (!lightning_fx_div.classList.contains("d-none")) {
-                    if (video.playbackRate == 0.25) {
-                        video.playbackRate = 1;
-                    } else {
-                        video.playbackRate = 0.25;
-                    }
-                }
-            });
-        </script>
-
+        <!-- Bootstrap script dist bundle -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
