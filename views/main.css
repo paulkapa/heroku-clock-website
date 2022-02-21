@@ -12,51 +12,78 @@ body {
 
 body, .header-s, .body-s, .footer-s {
     position: fixed;
-    width: 100vw;
-    height: auto;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
 
-    border-radius: 0.5em;
+    border-radius: 1em;
 
-    background-color: rgba(33, 37, 41, 1);
+    background-color: rgba(33, 37, 41, 0.9);
     background-size: cover;
 
-    font-family: Consolas,monaco,monospace;
+    font-family: Consolas, monaco, monospace;
+    text-decoration: none;
+    text-shadow: 1em -1em rgba(248, 249, 250, 0.2);
     text-align: center;
     color: rgba(248, 249, 250, 1);
 }
 
-.footer-s, .body-s {top: unset;}
+.header-s {bottom: unset;}
+.footer-s {top: unset;}
 .header-s, .footer-s {
-    background-color: rgba(0, 0, 255, 0.3);
-    z-index: 100;
+    background-color: rgba(0, 0, 255, 0.5);
+    z-index: 101;
 }
-.header-s {top: 0;}
-.footer-s {bottom: 0;}
 
 .hide-footer, .show-footer {
     position: fixed;
     bottom: 0.25em;
     left: 0.5em;
-    z-index: 100;
+    transform: translate(0.25em, -0.5em);
+
+    border-radius: 50%;
+
+    background-color: rgba(33, 37, 41, 0.5);
+    background-size: cover;
+
+    z-index: 101;
 }
+
+.header-s > header > .wasted:hover {cursor: pointer;}
 
 .body-s > .h1-div {
     position: fixed;
-    top: 20%;
+    top: 6em;
     left: 1em;
 
     padding: 0.5em;
-
-    background-color: rgba(0, 0, 255, 0.3);
-    background-size: contain;
 
     z-index: 100;
 }
 
 .body-s > .h1-div:hover {cursor: pointer;}
+
+.body-s > .h1-div > h1 > code {
+    font-size: 1.5em;
+    color: rgb(37, 47, 61);
+    font-weight: bolder;
+}
+
+@keyframes shimmer {
+    0% {opacity: 0.8;}
+    20% {opacity: 0.1;}
+    40% {opacity: 0.2;}
+    60% {opacity: 0.3;}
+    80% {opacity: 1;}
+    100% {opacity: 0.5;}
+}
+
+.body-s > .h1-div > h1 > code, .body-s > .h1-div > h1 > span {
+    animation: shimmer 1ms linear 0s infinite alternate-reverse none;
+}
 
 .body-s > .lightning > .lightning-fx {
     position: fixed;
@@ -99,8 +126,9 @@ body, .header-s, .body-s, .footer-s {
 
 .body-s > .play-btn {
     position: fixed;
-    top: 30%;
-    left: calc(50% - 9em/2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes fade-in {

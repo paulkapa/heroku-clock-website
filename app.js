@@ -7,7 +7,6 @@ app.set(`views`, `${__dirname}/views`);
 
 app.get("/", (req, res) => {
     res.sendFile(`index.html`);
-    console.log("GET /");
 });
 
 app.listen(PORT, console.log(`Listening on port ${PORT}...`));
